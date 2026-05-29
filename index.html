@@ -1,519 +1,628 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Inferreach — Outreach Infrastructure for Engineers</title>
-<meta name="description" content="AI-powered outreach pipelines. Lead sourcing, enrichment, personalization and delivery — automated end to end."/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InferReach — Data Engineering for Startups</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-:root{
-  --bg:#07080d;
-  --bg2:#0d0f18;
-  --bg3:#12151f;
-  --border:#1e2235;
-  --accent:#4f8fff;
-  --accent2:#7cffcb;
-  --text:#e8eaf2;
-  --muted:#6b7394;
-  --white:#ffffff;
-}
+  :root {
+    --ink: #0a0a0f;
+    --ink2: #3a3a4a;
+    --ink3: #7a7a8a;
+    --paper: #f7f6f2;
+    --white: #ffffff;
+    --accent: #1a1aff;
+    --accent2: #00d4aa;
+    --line: rgba(10,10,15,0.1);
+    --font-head: 'Syne', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
 
-html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden;}
+  html { scroll-behavior: smooth; }
 
-/* NAV */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:18px 48px;
-  background:rgba(7,8,13,0.85);
-  backdrop-filter:blur(16px);
-  border-bottom:1px solid var(--border);
-}
-.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;color:var(--white);letter-spacing:-0.02em;}
-.logo span{color:var(--accent);}
-.nav-links{display:flex;gap:32px;list-style:none;}
-.nav-links a{color:var(--muted);text-decoration:none;font-size:.9rem;font-weight:500;transition:color .2s;}
-.nav-links a:hover{color:var(--white);}
-.nav-cta{background:var(--accent);color:#000;padding:9px 22px;border-radius:8px;font-weight:600;font-size:.88rem;text-decoration:none;transition:opacity .2s;}
-.nav-cta:hover{opacity:.85;}
+  body {
+    font-family: var(--font-body);
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
 
-/* HERO */
-.hero{
-  min-height:100vh;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;
-  padding:120px 24px 80px;
-  position:relative;
-  overflow:hidden;
-}
-.hero::before{
-  content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);
-  width:800px;height:800px;
-  background:radial-gradient(circle, rgba(79,143,255,.12) 0%, transparent 70%);
-  pointer-events:none;
-}
-.hero-badge{
-  display:inline-flex;align-items:center;gap:8px;
-  background:rgba(79,143,255,.1);border:1px solid rgba(79,143,255,.25);
-  color:var(--accent);font-size:.8rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
-  padding:6px 14px;border-radius:100px;margin-bottom:32px;
-  animation:fadeUp .6s ease both;
-}
-.hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent2);animation:pulse 2s infinite;}
-@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
-h1{
-  font-family:'Syne',sans-serif;font-weight:800;
-  font-size:clamp(2.8rem,6vw,5rem);
-  line-height:1.05;letter-spacing:-.03em;
-  color:var(--white);
-  max-width:800px;
-  animation:fadeUp .7s .1s ease both;
-}
-h1 .accent{color:var(--accent);}
-h1 .accent2{color:var(--accent2);}
-.hero-sub{
-  margin-top:24px;max-width:520px;
-  color:var(--muted);font-size:1.1rem;font-weight:300;line-height:1.7;
-  animation:fadeUp .7s .2s ease both;
-}
-.hero-actions{
-  margin-top:40px;display:flex;gap:14px;flex-wrap:wrap;justify-content:center;
-  animation:fadeUp .7s .3s ease both;
-}
-.btn-primary{
-  background:var(--accent);color:#000;
-  padding:14px 32px;border-radius:10px;
-  font-weight:700;font-size:1rem;text-decoration:none;
-  transition:transform .15s,opacity .15s;
-}
-.btn-primary:hover{transform:translateY(-2px);opacity:.9;}
-.btn-secondary{
-  background:var(--bg3);color:var(--text);
-  border:1px solid var(--border);
-  padding:14px 32px;border-radius:10px;
-  font-weight:500;font-size:1rem;text-decoration:none;
-  transition:border-color .2s,transform .15s;
-}
-.btn-secondary:hover{border-color:var(--accent);transform:translateY(-2px);}
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 4rem;
+    background: rgba(247,246,242,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  .logo {
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: 1.25rem;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .logo span { color: var(--accent); }
+  nav ul { list-style: none; display: flex; gap: 2.5rem; }
+  nav ul a {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--ink2);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  nav ul a:hover { color: var(--accent); }
+  .nav-cta {
+    background: var(--ink);
+    color: var(--white) !important;
+    padding: 0.5rem 1.25rem;
+    border-radius: 4px;
+    font-weight: 500 !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--accent) !important; color: var(--white) !important; }
 
-/* CODE PREVIEW */
-.code-preview{
-  margin-top:64px;width:100%;max-width:640px;
-  background:var(--bg3);border:1px solid var(--border);border-radius:14px;
-  overflow:hidden;text-align:left;
-  animation:fadeUp .8s .4s ease both;
-  box-shadow:0 40px 80px rgba(0,0,0,.5);
-}
-.code-bar{
-  display:flex;align-items:center;gap:8px;
-  padding:12px 16px;background:var(--bg2);border-bottom:1px solid var(--border);
-}
-.dot{width:10px;height:10px;border-radius:50%;}
-.dot.r{background:#ff5f57;}.dot.y{background:#febc2e;}.dot.g{background:#28c840;}
-.code-filename{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--muted);}
-pre{padding:24px;font-family:'JetBrains Mono',monospace;font-size:.8rem;line-height:1.8;overflow-x:auto;}
-.c-comment{color:#4b5580;}.c-keyword{color:#c792ea;}.c-fn{color:#82aaff;}
-.c-str{color:#c3e88d;}.c-var{color:var(--accent2);}.c-check{color:var(--accent2);}
-.c-num{color:#f78c6c;}
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 8rem 4rem 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(10,10,15,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(10,10,15,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 30%, transparent 100%);
+  }
+  .hero-accent {
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(26,26,255,0.06) 0%, transparent 70%);
+    right: -100px; top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+  .hero-content { max-width: 780px; position: relative; z-index: 1; }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid rgba(26,26,255,0.25);
+    padding: 0.35rem 0.85rem;
+    border-radius: 2px;
+    margin-bottom: 2rem;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero-tag::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--accent2);
+    border-radius: 50%;
+    animation: pulse 2s ease infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
 
-/* STATS */
-.stats{
-  display:flex;justify-content:center;flex-wrap:wrap;gap:0;
-  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
-  background:var(--bg2);
-}
-.stat{
-  flex:1;min-width:160px;
-  padding:40px 32px;text-align:center;
-  border-right:1px solid var(--border);
-}
-.stat:last-child{border-right:none;}
-.stat-num{font-family:'Syne',sans-serif;font-size:2.2rem;font-weight:800;color:var(--white);}
-.stat-num span{color:var(--accent);}
-.stat-label{font-size:.82rem;color:var(--muted);margin-top:4px;}
+  h1 {
+    font-family: var(--font-head);
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 800;
+    line-height: 1.0;
+    letter-spacing: -0.04em;
+    color: var(--ink);
+    margin-bottom: 1.75rem;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+  h1 em {
+    font-style: normal;
+    color: var(--accent);
+    position: relative;
+  }
+  h1 em::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: 4px; right: 0;
+    height: 3px;
+    background: var(--accent2);
+    border-radius: 2px;
+  }
 
-/* SECTIONS */
-section{padding:96px 24px;}
-.container{max-width:1080px;margin:0 auto;}
-.section-label{
-  font-family:'JetBrains Mono',monospace;font-size:.75rem;
-  color:var(--accent);letter-spacing:.1em;text-transform:uppercase;
-  margin-bottom:16px;
-}
-h2{
-  font-family:'Syne',sans-serif;font-weight:800;
-  font-size:clamp(2rem,4vw,3rem);
-  line-height:1.1;letter-spacing:-.025em;
-  color:var(--white);margin-bottom:16px;
-}
-.section-sub{color:var(--muted);font-size:1.05rem;max-width:480px;line-height:1.7;}
+  .hero-sub {
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: var(--ink2);
+    max-width: 560px;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
 
-/* HOW IT WORKS */
-.pipeline{display:flex;flex-direction:column;gap:0;margin-top:56px;position:relative;}
-.pipeline::before{
-  content:'';position:absolute;left:28px;top:0;bottom:0;width:1px;
-  background:linear-gradient(to bottom, var(--accent), transparent);
-}
-.step{
-  display:flex;gap:32px;align-items:flex-start;
-  padding:32px 0;
-  opacity:0;transform:translateX(-20px);
-  transition:opacity .5s,transform .5s;
-}
-.step.visible{opacity:1;transform:none;}
-.step-num{
-  flex-shrink:0;width:56px;height:56px;border-radius:14px;
-  background:var(--bg3);border:1px solid var(--border);
-  display:flex;align-items:center;justify-content:center;
-  font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--accent);font-weight:500;
-  position:relative;z-index:1;
-}
-.step-body h3{font-family:'Syne',sans-serif;font-weight:700;font-size:1.1rem;color:var(--white);margin-bottom:8px;}
-.step-body p{color:var(--muted);font-size:.95rem;line-height:1.6;max-width:480px;}
-.step-tag{
-  display:inline-block;margin-top:10px;
-  font-family:'JetBrains Mono',monospace;font-size:.7rem;
-  background:rgba(79,143,255,.1);color:var(--accent);
-  padding:3px 10px;border-radius:4px;
-}
+  .hero-actions {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .btn-primary {
+    background: var(--ink);
+    color: var(--white);
+    padding: 0.875rem 2rem;
+    border-radius: 4px;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--accent); transform: translateY(-1px); }
+  .btn-secondary {
+    border: 1.5px solid var(--ink);
+    color: var(--ink);
+    padding: 0.875rem 2rem;
+    border-radius: 4px;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
 
-/* FEATURES GRID */
-.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;margin-top:56px;background:var(--border);border:1px solid var(--border);border-radius:16px;overflow:hidden;}
-.feature{background:var(--bg2);padding:36px 32px;transition:background .2s;}
-.feature:hover{background:var(--bg3);}
-.feature-icon{font-size:1.6rem;margin-bottom:16px;}
-.feature h3{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;color:var(--white);margin-bottom:10px;}
-.feature p{color:var(--muted);font-size:.9rem;line-height:1.6;}
+  .hero-stats {
+    display: flex; gap: 3rem; margin-top: 4rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--line);
+    animation: fadeUp 0.6s 0.4s ease both;
+  }
+  .stat-num {
+    font-family: var(--font-head);
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--ink);
+    letter-spacing: -0.04em;
+  }
+  .stat-num span { color: var(--accent); }
+  .stat-label { font-size: 0.8rem; color: var(--ink3); font-weight: 400; margin-top: 0.1rem; }
 
-/* PRICING */
-.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:56px;}
-.plan{
-  background:var(--bg3);border:1px solid var(--border);border-radius:16px;
-  padding:40px 36px;position:relative;transition:border-color .2s,transform .2s;
-}
-.plan:hover{border-color:var(--accent);transform:translateY(-4px);}
-.plan.popular{border-color:var(--accent);}
-.popular-badge{
-  position:absolute;top:-12px;left:50%;transform:translateX(-50%);
-  background:var(--accent);color:#000;font-size:.72rem;font-weight:700;
-  padding:4px 14px;border-radius:100px;white-space:nowrap;
-}
-.plan-name{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;color:var(--muted);margin-bottom:12px;}
-.plan-price{font-family:'Syne',sans-serif;font-weight:800;font-size:2.8rem;color:var(--white);line-height:1;}
-.plan-price sup{font-size:1.2rem;vertical-align:top;margin-top:8px;color:var(--muted);}
-.plan-price span{font-size:1rem;color:var(--muted);font-weight:400;}
-.plan-desc{color:var(--muted);font-size:.88rem;margin:12px 0 24px;line-height:1.5;}
-.plan-features{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:32px;}
-.plan-features li{font-size:.9rem;color:var(--text);display:flex;align-items:center;gap:10px;}
-.plan-features li::before{content:'✓';color:var(--accent2);font-weight:700;flex-shrink:0;}
-.plan-btn{
-  display:block;text-align:center;padding:13px;border-radius:10px;
-  font-weight:600;font-size:.95rem;text-decoration:none;
-  border:1px solid var(--border);color:var(--text);
-  transition:background .2s,color .2s,border-color .2s;
-}
-.plan-btn:hover,.plan.popular .plan-btn{background:var(--accent);color:#000;border-color:var(--accent);}
+  @keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:none; } }
 
-/* CTA */
-.cta-section{
-  background:linear-gradient(135deg, rgba(79,143,255,.08), rgba(124,255,203,.06));
-  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
-  text-align:center;padding:96px 24px;
-}
-.cta-section h2{margin:0 auto 16px;}
-.cta-section p{color:var(--muted);font-size:1.05rem;max-width:440px;margin:0 auto 40px;}
-.email-form{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
-.email-form input{
-  padding:14px 20px;border-radius:10px;
-  background:var(--bg3);border:1px solid var(--border);
-  color:var(--text);font-size:.95rem;width:280px;
-  outline:none;transition:border-color .2s;
-  font-family:'DM Sans',sans-serif;
-}
-.email-form input:focus{border-color:var(--accent);}
-.email-form input::placeholder{color:var(--muted);}
-.email-form button{
-  padding:14px 28px;border-radius:10px;
-  background:var(--accent);color:#000;border:none;
-  font-weight:700;font-size:.95rem;cursor:pointer;
-  font-family:'DM Sans',sans-serif;
-  transition:opacity .2s,transform .15s;
-}
-.email-form button:hover{opacity:.85;transform:translateY(-1px);}
-.form-note{font-size:.8rem;color:var(--muted);margin-top:14px;}
+  /* SECTIONS */
+  section { padding: 6rem 4rem; }
+  .section-tag {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  h2 {
+    font-family: var(--font-head);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+  .section-sub {
+    font-size: 1.05rem;
+    color: var(--ink2);
+    font-weight: 300;
+    max-width: 500px;
+    line-height: 1.7;
+    margin-bottom: 3.5rem;
+  }
 
-/* FOOTER */
-footer{
-  padding:48px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;
-  border-top:1px solid var(--border);
-}
-.footer-logo{font-family:'Syne',sans-serif;font-weight:800;color:var(--white);font-size:1.1rem;}
-.footer-logo span{color:var(--accent);}
-.footer-links{display:flex;gap:24px;}
-.footer-links a{color:var(--muted);text-decoration:none;font-size:.88rem;transition:color .2s;}
-.footer-links a:hover{color:var(--white);}
-.footer-copy{color:var(--muted);font-size:.82rem;width:100%;text-align:center;padding-top:24px;border-top:1px solid var(--border);}
+  /* PROBLEMS */
+  .problems { background: var(--ink); color: var(--white); }
+  .problems .section-tag { color: var(--accent2); }
+  .problems h2 { color: var(--white); }
+  .problems .section-sub { color: rgba(255,255,255,0.55); }
+  .problems-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .problem-item {
+    padding: 2.5rem 2rem;
+    background: var(--ink);
+    transition: background 0.2s;
+  }
+  .problem-item:hover { background: #14141f; }
+  .problem-num {
+    font-family: var(--font-head);
+    font-size: 3rem;
+    font-weight: 800;
+    color: rgba(255,255,255,0.08);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+  .problem-title {
+    font-family: var(--font-head);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+  .problem-desc { font-size: 0.875rem; color: rgba(255,255,255,0.45); line-height: 1.65; }
 
-@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:none;}}
-@media(max-width:768px){
-  nav{padding:16px 20px;}
-  .nav-links{display:none;}
-  section{padding:64px 20px;}
-  footer{padding:32px 20px;}
-  .pipeline::before{left:20px;}
-  .stat{min-width:130px;padding:28px 16px;}
-}
+  /* SERVICES */
+  .services { background: var(--white); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  .service-card {
+    border: 1.5px solid var(--line);
+    border-radius: 8px;
+    padding: 2.25rem;
+    background: var(--white);
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    cursor: default;
+  }
+  .service-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(26,26,255,0.08);
+  }
+  .service-card.featured {
+    border-color: var(--accent);
+    background: #f5f5ff;
+  }
+  .service-card.featured::before {
+    content: 'Most Popular';
+    position: absolute; top: 1.25rem; right: 1.25rem;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: rgba(26,26,255,0.1);
+    padding: 0.25rem 0.65rem;
+    border-radius: 2px;
+  }
+  .service-icon {
+    width: 44px; height: 44px;
+    background: var(--ink);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+  .service-card.featured .service-icon { background: var(--accent); }
+  .service-name {
+    font-family: var(--font-head);
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.4rem;
+    color: var(--ink);
+  }
+  .service-price {
+    font-family: var(--font-head);
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    color: var(--ink);
+    margin: 1rem 0;
+  }
+  .service-price span { font-size: 1rem; font-weight: 400; color: var(--ink3); }
+  .service-desc { font-size: 0.875rem; color: var(--ink2); line-height: 1.65; margin-bottom: 1.5rem; }
+  .service-features { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .service-features li {
+    font-size: 0.85rem;
+    color: var(--ink2);
+    display: flex; align-items: flex-start; gap: 0.6rem;
+  }
+  .service-features li::before {
+    content: '→';
+    color: var(--accent2);
+    font-weight: 600;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* HOW IT WORKS */
+  .how { background: var(--paper); }
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0;
+    position: relative;
+  }
+  .steps::after {
+    content: '';
+    position: absolute;
+    top: 28px; left: 60px; right: 60px;
+    height: 1px;
+    background: repeating-linear-gradient(90deg, var(--ink) 0, var(--ink) 6px, transparent 6px, transparent 14px);
+    opacity: 0.15;
+  }
+  .step { padding: 0 2rem 2rem 0; position: relative; z-index: 1; }
+  .step-num {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: var(--white);
+    border: 1.5px solid var(--line);
+    font-family: var(--font-head);
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--ink);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+  .step:nth-child(1) .step-num { background: var(--ink); color: var(--white); border-color: var(--ink); }
+  .step-title {
+    font-family: var(--font-head);
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--ink);
+  }
+  .step-desc { font-size: 0.85rem; color: var(--ink2); line-height: 1.65; }
+
+  /* STACK */
+  .stack { background: var(--white); }
+  .tools-grid {
+    display: flex; flex-wrap: wrap; gap: 0.75rem;
+    margin-top: 2rem;
+  }
+  .tool-pill {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--ink2);
+    border: 1px solid var(--line);
+    padding: 0.4rem 1rem;
+    border-radius: 100px;
+    background: var(--paper);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .tool-pill:hover { border-color: var(--accent); color: var(--accent); }
+  .tool-pill.core { border-color: var(--accent); color: var(--accent); background: rgba(26,26,255,0.04); }
+
+  /* CTA */
+  .cta-section {
+    background: var(--ink);
+    text-align: center;
+    padding: 6rem 4rem;
+  }
+  .cta-section h2 { color: var(--white); margin-bottom: 1rem; }
+  .cta-section p { color: rgba(255,255,255,0.5); margin-bottom: 2.5rem; font-weight: 300; max-width: 480px; margin-left: auto; margin-right: auto; }
+  .cta-section .btn-primary { background: var(--accent2); color: var(--ink); font-weight: 600; }
+  .cta-section .btn-primary:hover { background: var(--white); transform: translateY(-2px); }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 2rem 4rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  footer .logo { color: var(--white); }
+  footer p { font-size: 0.8rem; color: rgba(255,255,255,0.3); }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    nav ul { display: none; }
+    .hero { padding: 7rem 1.5rem 4rem; }
+    section { padding: 4rem 1.5rem; }
+    .hero-stats { gap: 2rem; flex-wrap: wrap; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem 1.5rem; }
+    .steps::after { display: none; }
+    .cta-section { padding: 4rem 1.5rem; }
+  }
 </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <div class="logo">Infer<span>reach</span></div>
-  <ul class="nav-links">
-    <li><a href="#how-it-works">How it works</a></li>
-    <li><a href="#features">Features</a></li>
-    <li><a href="#pricing">Pricing</a></li>
+  <a href="#" class="logo">Infer<span>Reach</span></a>
+  <ul>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#how">Process</a></li>
+    <li><a href="#stack">Stack</a></li>
+    <li><a href="mailto:hello@inferreach.com" class="nav-cta">Get a free audit →</a></li>
   </ul>
-  <a href="#get-started" class="nav-cta">Get Started</a>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-badge">Now accepting clients</div>
-  <h1>Outreach pipelines.<br/><span class="accent">Engineered</span> to <span class="accent2">convert.</span></h1>
-  <p class="hero-sub">Inferreach runs your entire outbound operation — lead sourcing, AI enrichment, personalization, and delivery. Powered by real data pipelines.</p>
-  <div class="hero-actions">
-    <a href="#get-started" class="btn-primary">Start for free</a>
-    <a href="#how-it-works" class="btn-secondary">See how it works</a>
-  </div>
-  <div class="code-preview">
-    <div class="code-bar">
-      <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
-      <span class="code-filename">inferreach_pipeline.py</span>
+  <div class="hero-grid"></div>
+  <div class="hero-accent"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Data Engineering · Built for Startups</div>
+    <h1>Your data,<br><em>finally</em> working<br>for you.</h1>
+    <p class="hero-sub">We build the data pipelines, warehouses, and dashboards your startup needs — without the cost of a full-time data team.</p>
+    <div class="hero-actions">
+      <a href="mailto:hello@inferreach.com" class="btn-primary">Get a free 30-min audit →</a>
+      <a href="#services" class="btn-secondary">See our packages</a>
     </div>
-    <pre><span class="c-comment"># run full outreach pipeline</span>
-<span class="c-keyword">from</span> inferreach <span class="c-keyword">import</span> Pipeline
-
-pipeline = Pipeline(<span class="c-str">"acme_corp_q2"</span>)
-
-pipeline
-  .import_leads(<span class="c-str">"leads.csv"</span>)
-  .enrich(find_email=<span class="c-keyword">True</span>)
-  .personalize(model=<span class="c-str">"claude"</span>)
-  .send(limit=<span class="c-num">50</span>)
-  .schedule_followups(days=[<span class="c-num">3</span>, <span class="c-num">7</span>])
-
-<span class="c-check">✓</span> <span class="c-num">247</span> leads imported
-<span class="c-check">✓</span> <span class="c-num">241</span> emails enriched &amp; personalized
-<span class="c-check">✓</span> <span class="c-num">50</span> emails sent today · <span class="c-num">12</span> replies</pre>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">48<span>hr</span></div>
+        <div class="stat-label">First delivery</div>
+      </div>
+      <div>
+        <div class="stat-num">$0</div>
+        <div class="stat-label">Upfront cost on starter</div>
+      </div>
+      <div>
+        <div class="stat-num">100<span>%</span></div>
+        <div class="stat-label">Remote, async-first</div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- STATS -->
-<div class="stats">
-  <div class="stat"><div class="stat-num">3<span>k</span></div><div class="stat-label">Emails / month on free plan</div></div>
-  <div class="stat"><div class="stat-num"><span>$</span>0</div><div class="stat-label">To get started</div></div>
-  <div class="stat"><div class="stat-num">100<span>%</span></div><div class="stat-label">Your data, always</div></div>
-  <div class="stat"><div class="stat-num">AI</div><div class="stat-label">Personalized at scale</div></div>
-</div>
+<!-- PROBLEMS -->
+<section class="problems">
+  <div class="section-tag">The problem</div>
+  <h2>Sound familiar?</h2>
+  <p class="section-sub">Most early-stage startups are drowning in the same data problems.</p>
+  <div class="problems-grid">
+    <div class="problem-item">
+      <div class="problem-num">01</div>
+      <div class="problem-title">Data lives everywhere</div>
+      <div class="problem-desc">Postgres, Stripe, Mixpanel, Google Sheets — no single source of truth. Every meeting starts with "which number is right?"</div>
+    </div>
+    <div class="problem-item">
+      <div class="problem-num">02</div>
+      <div class="problem-title">Pipelines break silently</div>
+      <div class="problem-desc">Your ETL job fails overnight and nobody knows until the CEO asks why the dashboard shows zeros.</div>
+    </div>
+    <div class="problem-item">
+      <div class="problem-num">03</div>
+      <div class="problem-title">Reporting takes days</div>
+      <div class="problem-desc">Engineers manually pull data for every report. One analyst spends 40% of their time on spreadsheet wrangling.</div>
+    </div>
+    <div class="problem-item">
+      <div class="problem-num">04</div>
+      <div class="problem-title">Can't afford a data team</div>
+      <div class="problem-desc">A senior data engineer costs $150k+/year. You need the infrastructure without the headcount.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-tag">Packages</div>
+  <h2>Pick your starting point.</h2>
+  <p class="section-sub">Flat-rate projects. No hourly billing surprises. Everything delivered in days, not months.</p>
+  <div class="services-grid">
+
+    <div class="service-card">
+      <div class="service-icon">🔍</div>
+      <div class="service-name">Data Audit</div>
+      <div class="service-price">$149 <span>one-time</span></div>
+      <div class="service-desc">We map your entire data landscape, find the gaps, and hand you a concrete action plan. Perfect first step.</div>
+      <ul class="service-features">
+        <li>Full data source inventory</li>
+        <li>Pipeline health check</li>
+        <li>Priority fix recommendations</li>
+        <li>30-min walkthrough call</li>
+        <li>Delivered in 48 hours</li>
+      </ul>
+    </div>
+
+    <div class="service-card featured">
+      <div class="service-icon">⚡</div>
+      <div class="service-name">Pipeline Setup</div>
+      <div class="service-price">$499 <span>one-time</span></div>
+      <div class="service-desc">We build your end-to-end data pipeline — ingestion, transformation, warehouse, and a live dashboard. Done.</div>
+      <ul class="service-features">
+        <li>Up to 3 data sources connected</li>
+        <li>Airbyte + dbt transformation layer</li>
+        <li>BigQuery or DuckDB warehouse</li>
+        <li>Metabase dashboard (5 reports)</li>
+        <li>14 days of post-delivery support</li>
+        <li>Full documentation handed over</li>
+      </ul>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">🔄</div>
+      <div class="service-name">Ongoing Partner</div>
+      <div class="service-price">$349 <span>/ month</span></div>
+      <div class="service-desc">Your on-call data engineering team. We maintain, monitor, and improve your data infrastructure every month.</div>
+      <ul class="service-features">
+        <li>Pipeline monitoring & alerts</li>
+        <li>2 new reports or features/month</li>
+        <li>Weekly async status update</li>
+        <li>Priority Slack/email support</li>
+        <li>Monthly data quality review</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
 
 <!-- HOW IT WORKS -->
-<section id="how-it-works">
-  <div class="container">
-    <div class="section-label">// how it works</div>
-    <h2>Five stages.<br/>One pipeline.</h2>
-    <p class="section-sub">From raw CSV to booked meeting — every step is automated, logged, and yours to control.</p>
-    <div class="pipeline" id="pipeline">
-      <div class="step">
-        <div class="step-num">01</div>
-        <div class="step-body">
-          <h3>Lead Import</h3>
-          <p>Upload a CSV of target prospects. We validate, deduplicate, and store everything into a structured database ready for enrichment.</p>
-          <span class="step-tag">postgres</span>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">02</div>
-        <div class="step-body">
-          <h3>Email Enrichment</h3>
-          <p>Missing emails are found via Hunter.io. Every lead is scored and validated before it ever enters a sequence.</p>
-          <span class="step-tag">hunter.io</span>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">03</div>
-        <div class="step-body">
-          <h3>AI Personalization</h3>
-          <p>Claude runs inference on each lead to generate a unique, context-aware opening line — no copy-paste templates.</p>
-          <span class="step-tag">claude api</span>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">04</div>
-        <div class="step-body">
-          <h3>Delivery</h3>
-          <p>Emails go out via Resend with daily rate limits and full send logging. Deliverability is built in, not bolted on.</p>
-          <span class="step-tag">resend</span>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">05</div>
-        <div class="step-body">
-          <h3>Automated Follow-ups</h3>
-          <p>Day 3 and day 7 follow-ups run on schedule. Replied leads are automatically skipped. Everything is logged.</p>
-          <span class="step-tag">scheduler</span>
-        </div>
-      </div>
+<section class="how" id="how">
+  <div class="section-tag">Process</div>
+  <h2>Simple from day one.</h2>
+  <p class="section-sub">We keep things lean and async-first. No bloated discovery phases.</p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-title">Free 30-min audit call</div>
+      <div class="step-desc">You walk us through your current setup. We ask the right questions and identify the highest-leverage fixes.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-title">Proposal in 24 hours</div>
+      <div class="step-desc">We send a clear scope, timeline, and fixed price. No surprises, no hourly billing.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-title">We build, you review</div>
+      <div class="step-desc">Work happens async. You get daily updates and a staging environment to review before anything goes live.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-title">Handover + support</div>
+      <div class="step-desc">Full documentation, video walkthrough, and 14 days of support so your team actually knows how to use it.</div>
     </div>
   </div>
 </section>
 
-<!-- FEATURES -->
-<section id="features" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
-  <div class="container">
-    <div class="section-label">// features</div>
-    <h2>Built for people who<br/>care about results.</h2>
-    <div class="features-grid">
-      <div class="feature"><div class="feature-icon">⚡</div><h3>Real-time pipeline status</h3><p>See exactly where every lead is in the funnel at any moment. No black boxes.</p></div>
-      <div class="feature"><div class="feature-icon">🎯</div><h3>ICP filtering</h3><p>Filter by job title, company size, tech stack, and more before a single email goes out.</p></div>
-      <div class="feature"><div class="feature-icon">🤖</div><h3>AI-written openers</h3><p>Every email starts with a line written specifically for that lead. Not a variable. An actual sentence.</p></div>
-      <div class="feature"><div class="feature-icon">📬</div><h3>Smart follow-ups</h3><p>Sequences run automatically. Replied leads are removed instantly. No awkward double-sends.</p></div>
-      <div class="feature"><div class="feature-icon">🔒</div><h3>Your data, your infra</h3><p>We do not store or sell your lead data. Everything lives in your own database.</p></div>
-      <div class="feature"><div class="feature-icon">📊</div><h3>Full send logging</h3><p>Every email sent, opened, replied, or bounced is tracked and queryable.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- PRICING -->
-<section id="pricing">
-  <div class="container">
-    <div class="section-label">// pricing</div>
-    <h2>Simple, honest pricing.</h2>
-    <p class="section-sub">Start free. Scale when you are ready. No hidden fees.</p>
-    <div class="pricing-grid">
-      <div class="plan">
-        <div class="plan-name">Starter</div>
-        <div class="plan-price"><sup>$</sup>0<span>/mo</span></div>
-        <div class="plan-desc">Everything you need to get your first campaign live.</div>
-        <ul class="plan-features">
-          <li>Up to 3,000 emails/month</li>
-          <li>CSV lead import</li>
-          <li>Email enrichment</li>
-          <li>AI personalization</li>
-          <li>Automated follow-ups</li>
-        </ul>
-        <a href="#get-started" class="plan-btn">Get started free</a>
-      </div>
-      <div class="plan popular">
-        <div class="popular-badge">Most Popular</div>
-        <div class="plan-name">Growth</div>
-        <div class="plan-price"><sup>$</sup>49<span>/mo</span></div>
-        <div class="plan-desc">For teams running outbound as a core growth channel.</div>
-        <ul class="plan-features">
-          <li>Up to 15,000 emails/month</li>
-          <li>Priority enrichment</li>
-          <li>Advanced ICP filtering</li>
-          <li>Multi-sequence campaigns</li>
-          <li>Analytics dashboard</li>
-          <li>Dedicated support</li>
-        </ul>
-        <a href="#get-started" class="plan-btn">Start free trial</a>
-      </div>
-      <div class="plan">
-        <div class="plan-name">Agency</div>
-        <div class="plan-price"><sup>$</sup>149<span>/mo</span></div>
-        <div class="plan-desc">Run campaigns for multiple clients under one roof.</div>
-        <ul class="plan-features">
-          <li>Unlimited emails</li>
-          <li>Multi-client workspaces</li>
-          <li>White-label reports</li>
-          <li>API access</li>
-          <li>Custom integrations</li>
-          <li>Priority SLA</li>
-        </ul>
-        <a href="#get-started" class="plan-btn">Talk to us</a>
-      </div>
-    </div>
+<!-- STACK -->
+<section class="stack" id="stack">
+  <div class="section-tag">Tech Stack</div>
+  <h2>Best-in-class tools.<br>All open source.</h2>
+  <p class="section-sub">We build on proven, open-source technology so you never get locked in — and never pay unnecessary tool costs.</p>
+  <div class="tools-grid">
+    <span class="tool-pill core">Airbyte</span>
+    <span class="tool-pill core">dbt Core</span>
+    <span class="tool-pill core">DuckDB</span>
+    <span class="tool-pill core">BigQuery</span>
+    <span class="tool-pill core">Metabase</span>
+    <span class="tool-pill">Python</span>
+    <span class="tool-pill">Apache Airflow</span>
+    <span class="tool-pill">PostgreSQL</span>
+    <span class="tool-pill">Pandas</span>
+    <span class="tool-pill">GitHub Actions</span>
+    <span class="tool-pill">Google Sheets API</span>
+    <span class="tool-pill">Stripe API</span>
+    <span class="tool-pill">Mixpanel</span>
+    <span class="tool-pill">Looker Studio</span>
   </div>
 </section>
 
 <!-- CTA -->
-<section class="cta-section" id="get-started">
-  <div class="container">
-    <div class="section-label">// get started</div>
-    <h2>Ready to build<br/>your pipeline?</h2>
-    <p>Join teams using Inferreach to run smarter, faster outbound. Free to start, no credit card needed.</p>
-    <div class="email-form" id="signup-form">
-      <input type="email" id="signup-email" placeholder="your@email.com" required/>
-      <button type="button" id="signup-btn" onclick="submitSignup()">Start for free</button>
-    </div>
-    <p class="form-note" id="form-note">No spam. No credit card. Cancel anytime.</p>
-  </div>
+<section class="cta-section">
+  <h2>Ready to fix your data?</h2>
+  <p>Book a free 30-minute audit. No commitment. We'll tell you exactly what's broken and how to fix it.</p>
+  <a href="mailto:founders@inferreach.com" class="btn-primary">Book your free audit →</a>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">Infer<span>reach</span></div>
-  <div class="footer-links">
-    <a href="#how-it-works">How it works</a>
-    <a href="#pricing">Pricing</a>
-    <a href="mailto:prajwol@prajwolraj.com.np">Contact</a>
-  </div>
-  <div class="footer-copy">© 2026 Inferreach · Kathmandu, Nepal · All rights reserved.</div>
+  <a href="#" class="logo">Infer<span>Reach</span></a>
+  <p>© 2024 InferReach. founders@inferreach.com</p>
 </footer>
 
-<script>
-// Formspree signup
-async function submitSignup() {
-  const email = document.getElementById('signup-email').value;
-  const btn = document.getElementById('signup-btn');
-  const note = document.getElementById('form-note');
-  if (!email || !email.includes('@')) {
-    document.getElementById('signup-email').style.borderColor = '#ff5f57';
-    return;
-  }
-  btn.textContent = 'Sending...';
-  btn.disabled = true;
-  try {
-    const res = await fetch('https://formspree.io/f/xqenrwqj', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({ email })
-    });
-    if (res.ok) {
-      btn.textContent = '✓ You\'re in!';
-      btn.style.background = '#7cffcb';
-      document.getElementById('signup-email').style.display = 'none';
-      note.textContent = 'Thanks! We\'ll be in touch soon.';
-      note.style.color = '#7cffcb';
-    } else {
-      btn.textContent = 'Try again';
-      btn.disabled = false;
-      note.textContent = 'Something went wrong. Please try again.';
-      note.style.color = '#ff5f57';
-    }
-  } catch {
-    btn.textContent = 'Try again';
-    btn.disabled = false;
-  }
-}
-
-// Scroll animations for pipeline steps
-const steps = document.querySelectorAll('.step');
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((e, i) => {
-    if(e.isIntersecting){
-      setTimeout(() => e.target.classList.add('visible'), i * 100);
-    }
-  });
-}, {threshold: 0.2});
-steps.forEach(s => observer.observe(s));
-</script>
 </body>
 </html>
